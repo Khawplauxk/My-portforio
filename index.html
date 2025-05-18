@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio</title>
+
+  <!-- Font Awesome สำหรับไอคอน -->
+  <script src="https://kit.fontawesome.com/4dcf3b3b2d.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .socials a, .contact-info a {
+      transition: color 0.2s, transform 0.2s;
+    }
+    .socials a:hover, .contact-info a:hover {
+      color: #ff7e5f;
+      transform: scale(1.15);
+    }
+    .bar-fill {
+      animation: fillBar 1.2s cubic-bezier(.77,0,.18,1);
+    }
+    @keyframes fillBar {
+      from { width: 0; }
+      to { width: inherit; }
+    }
+    @media (max-width: 700px) {
+      section {
+        padding: 32px 8px 24px 8px;
+        border-radius: 12px;
+      }
+      .portfolio-item {
+        width: 95vw;
+        max-width: 340px;
+      }
+    }
+    #scrollTopBtn {
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      z-index: 999;
+      background: #00bfae;
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 48px;
+      height: 48px;
+      font-size: 2rem;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(1,88,113,0.15);
+      opacity: 0.7;
+      display: none;
+      transition: opacity 0.2s;
+    }
+    #scrollTopBtn:hover {
+      opacity: 1;
+    }
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      /* ... */
+      position: fixed;
+      width: 100%;
+      z-index: 100;
+    }
+    header .navigation {
+      flex: 1;
+      margin-left: 32px;
+    }
+    #themeToggle {
+      position: static;
+      margin-left: 32px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h2 class="logo">Portfolio</h2>
+    <nav class="navigation">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#portfolio">Portfolio</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button id="themeToggle">🌙</button>
+  </header>
+  <section class="home" id="home">
+    <div class="content" style="display: flex; align-items: center; gap: 40px;">
+      <div style="flex:1;">
+        <h3>Hello, It's Me</h3>
+        <h1><span>Peraphat Sawatsalung</span></h1>
+        <h3>And I am a <span class="typing"></span></h3>
+        <p>I am a computer science student</p>
+
+        <div class="socials">
+          <a href="https://www.instagram.com/_khawplauxk/" target="_blank"><i class="fab fa-instagram"></i></a>
+          <a href="https://wa.me/66812415036" target="_blank"><i class="fab fa-whatsapp"></i></a>
+          <a href="https://tiktok.com/404" target="_blank"><i class="fab fa-tiktok"></i></a>
+          <a href="https://discord.com/users/472036867286499329" target="_blank"><i class="fab fa-discord"></i></a>
+        </div>
+      </div>
+      <div class="profile-img" style="margin-left:auto;">
+        <img src="09061662-8a52-4ad4-8480-29d72f977adc.png" alt="Avatar" />
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <h1>About</h1>
+    <div class="about-container">
+      <div class="about-img">
+        <img src="494885631_706524978721902_7524303429753259503_n.jpg" alt="Profile" />
+      </div>
+      <div class="about-text">
+        <h2>Peraphat Sawatsalung</h2>
+        <p>
+          สวัสดีครับ ผมชื่อ <b>Peraphat Sawatsalung</b> ปัจจุบันผมศึกษาอยู่ระดับปริญญาตรีสาขานิติศาสตร์ แต่มีความสนใจในด้านการพัฒนาเว็บไซต์ การเขียนโปรแกรม และเทคโนโลยีใหม่ ๆ ผมพึ่งเริ่มเขียนเว็บไซต์ผมเลยยังเขียนอะไรได้ไม่มาก<br><br>
+          แต่ผมพร้อมพัฒนาทักษะของตัวเองอยู่เสมอ พร้อมเปิดรับประสบการณ์ใหม่ ๆ และทำงานร่วมกับผู้อื่นอย่างเต็มที่<br><br>
+          <span class="about-highlight">"Learning never exhausts the mind."</span>
+        </p>
+        <ul class="about-list">
+          <li><i class="fas fa-code"></i> Web Development</li>
+          <li><i class="fas fa-laptop"></i> Programming</li>
+          <li><i class="fas fa-users"></i> Teamwork</li>
+          <li><i class="fas fa-lightbulb"></i> Creative Thinking</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <h1>Skills</h1>
+    <div class="skills-bar-container">
+      <div class="skill-bar">
+        <span class="skill-title"><i class="fas fa-code"></i> HTML / CSS / JavaScript</span>
+        <div class="bar-bg">
+          <div class="bar-fill" style="width: 50%"></div>
+        </div>
+      </div>
+      <div class="skill-bar">
+        <span class="skill-title"><i class="fas fa-database"></i> SQL & Database</span>
+        <div class="bar-bg">
+          <div class="bar-fill" style="width: 35%"></div>
+        </div>
+      </div>
+      <div class="skill-bar">
+        <span class="skill-title"><i class="fab fa-python"></i> Python</span>
+        <div class="bar-bg">
+          <div class="bar-fill" style="width: 50%"></div>
+        </div>
+      </div>
+      <div class="skill-bar">
+        <span class="skill-title"><i class="fas fa-paint-brush"></i> UI Design</span>
+        <div class="bar-bg">
+          <div class="bar-fill" style="width: 20%"></div>
+        </div>
+      </div>
+      <div class="skill-bar">
+        <span class="skill-title"><i class="fas fa-users"></i> Teamwork</span>
+        <div class="bar-bg">
+          <div class="bar-fill" style="width: 85%"></div>
+        </div>
+      </div>
+      <div class="skill-bar">
+        <span class="skill-title"><i class="fas fa-lightbulb"></i> Problem Solving</span>
+        <div class="bar-bg">
+          <div class="bar-fill" style="width: 40%"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="portfolio">
+    <h1>Portfolio</h1>
+    <div class="portfolio-container" style="text-align:center; padding: 48px 0;">
+      <p style="font-size:1.2rem; color:#888;">
+        ยังไม่มีเนื้อหาในส่วน Portfolio ขณะนี้
+      </p>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h1>Contact</h1>
+    <div class="contact-info">
+      <p><i class="fas fa-envelope"></i> Email: khawplauxk@gmail.com</p>
+      <p><i class="fas fa-phone"></i> Phone: 081-241-5036</p>
+      <p>
+        <a href="https://www.instagram.com/_khawplauxk/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a> |
+        <a href="https://wa.me/66812415036" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a> |
+        <a href="https://tiktok.com/404" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a> |
+        <a href="https://discord.com/users/472036867286499329" target="_blank"><i class="fab fa-discord"></i> Discord</a>
+      </p>
+    </div>
+  </section>
+
+   <div class="ocean">
+  <div class="wave"></div>
+  <div class="wave"></div>
+</div>
+
+  <button id="scrollTopBtn" title="Go to top">&#8679;</button>
+
+  <footer style="text-align:center; color:#888; margin: 32px 0 12px 0; font-size:1rem;">
+    &copy; 2025 Peraphat Sawatsalung. All rights reserved.
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
