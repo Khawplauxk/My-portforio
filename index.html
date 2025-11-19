@@ -1,665 +1,618 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Peraphat | Portfolio</title>
-  <link rel="icon" type="image/png" href="favicon.png" />
-  <script src="https://kit.fontawesome.com/4dcf3b3b2d.js" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Peraphat</title>
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <!-- Font Awesome สำหรับไอคอน -->
+  <script src="https://kit.fontawesome.com/4dcf3b3b2d.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
-  <style>
-    /* --- GLOBAL RESET & VARIABLES --- */
-    :root {
-      --main-color: #00f2ea; /* Neon Cyan */
-      --second-color: #ff0050; /* Neon Pink for accents */
-      --bg-color: #0f172a;
-      --bg-light: #1e293b;
-      --text-color: #e2e8f0;
-      --glass-bg: rgba(255, 255, 255, 0.05);
-      --glass-border: rgba(255, 255, 255, 0.1);
-      --shadow: 0 0 15px var(--main-color);
-    }
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .socials a, .contact-info a {
+      transition: color 0.2s, transform 0.2s;
+    }
+    .socials a:hover, .contact-info a:hover {
+      color: #ff7e5f;
+      transform: scale(1.15);
+    }
+    .bar-fill {
+      animation: fillBar 1.2s cubic-bezier(.77,0,.18,1);
+    }
+    @keyframes fillBar {
+      from { width: 0; }
+      to { width: inherit; }
+    }
+    @media (max-width: 700px) {
+      section {
+        padding: 32px 8px 24px 8px;
+        border-radius: 12px;
+      }
+      .portfolio-item {
+        width: 95vw;
+        max-width: 340px;
+      }
+    }
+    #scrollTopBtn {
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      z-index: 999;
+      background: #00bfae;
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 48px;
+      height: 48px;
+      font-size: 2rem;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(1,88,113,0.15);
+      opacity: 0.7;
+      display: none;
+      transition: opacity 0.2s;
+    }
+    #scrollTopBtn:hover {
+      opacity: 1;
+    }
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      /* ... */
+      position: fixed;
+      width: 100%;
+      z-index: 100;
+    }
+    header .navigation {
+      flex: 1;
+      margin-left: 32px;
+    }
+    #themeToggle {
+      position: static;
+      margin-left: 32px;
+    }
+    .contact-flex {
+      display: flex;
+      gap: 40px;
+      align-items: flex-start;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 32px;
+    }
+    .contact-info {
+      min-width: 220px;
+      max-width: 320px;
+      background: #f8f8f8;
+      border-radius: 16px;
+      box-shadow: 0 2px 12px rgba(0,191,174,0.07);
+      padding: 28px 22px;
+      font-size: 1.08rem;
+      color: #222;
+      margin-bottom: 18px;
+    }
+    .contact-info p, .contact-info a {
+      margin-bottom: 12px;
+      color: #00bfae;
+      word-break: break-all;
+    }
+    .contact-info i {
+      margin-right: 8px;
+      color: #00bfae;
+    }
+    .contact-form {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 4px 24px rgba(0,191,174,0.08);
+      padding: 32px 24px;
+      max-width: 420px;
+      min-width: 260px;
+      flex: 1 1 320px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      margin: 0;
+    }
+    .contact-form .input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .contact-form label {
+      font-weight: 500;
+      color: #00bfae;
+      margin-bottom: 2px;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .contact-form input,
+    .contact-form textarea {
+      border: 1.5px solid #e0e0e0;
+      border-radius: 8px;
+      padding: 10px 12px;
+      font-size: 1rem;
+      transition: border 0.2s, box-shadow 0.2s;
+      outline: none;
+      background: #fafafa;
+      resize: none;
+    }
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      border: 1.5px solid #00bfae;
+      box-shadow: 0 2px 8px rgba(0,191,174,0.08);
+      background: #fff;
+    }
+    .contact-form textarea {
+      min-height: 90px;
+      max-height: 220px;
+    }
+    .contact-btn {
+      background: linear-gradient(90deg, #00bfae 60%, #00e6d3 100%);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 12px 0;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 8px;
+      box-shadow: 0 2px 8px rgba(0,191,174,0.10);
+      transition: background 0.2s, transform 0.15s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .contact-btn:hover {
+      background: linear-gradient(90deg, #00e6d3 60%, #00bfae 100%);
+      transform: translateY(-2px) scale(1.03);
+    }
+    @media (max-width: 900px) {
+      .contact-flex {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 24px;
+      }
+      .contact-info, .contact-form {
+        max-width: 98vw;
+        min-width: unset;
+      }
+    }
+    .contact-modern-flex {
+      display: flex;
+      gap: 48px;
+      justify-content: center;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      margin: 0 auto 48px auto;
+      max-width: 900px;
+    }
+    .contact-modern-card {
+      background: #fff;
+      border-radius: 22px;
+      box-shadow: 0 6px 32px rgba(0,191,174,0.10), 0 1.5px 8px rgba(0,0,0,0.03);
+      padding: 36px 32px 28px 32px;
+      min-width: 270px;
+      max-width: 340px;
+      flex: 1 1 300px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 18px;
+    }
+    .contact-modern-card h2 {
+      font-size: 1.3rem;
+      color: #00bfae;
+      margin-bottom: 12px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .contact-modern-list div {
+      font-size: 1.08rem;
+      color: #222;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .contact-modern-socials {
+      display: flex;
+      gap: 18px;
+      margin-top: 10px;
+    }
+    .contact-modern-socials a {
+      font-size: 1.5rem;
+      color: #00bfae;
+      background: #f4fefd;
+      border-radius: 50%;
+      padding: 10px;
+      transition: background 0.2s, color 0.2s, transform 0.2s;
+      box-shadow: 0 2px 8px rgba(0,191,174,0.07);
+    }
+    .contact-modern-socials a:hover {
+      background: #00bfae;
+      color: #fff;
+      transform: scale(1.15);
+    }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      text-decoration: none;
-      border: none;
-      outline: none;
-      scroll-behavior: smooth;
-    }
-
-    body {
-      background: var(--bg-color);
-      color: var(--text-color);
-      font-family: 'Poppins', sans-serif;
-      overflow-x: hidden;
-      cursor: none; /* ซ่อนเมาส์ปกติ เพื่อใช้ Custom Cursor */
-    }
-
-    /* --- CUSTOM CURSOR --- */
-    .cursor {
-      width: 20px;
-      height: 20px;
-      border: 2px solid var(--main-color);
-      border-radius: 50%;
-      position: fixed;
-      pointer-events: none;
-      z-index: 9999;
-      transition: transform 0.1s;
-      transform: translate(-50%, -50%);
-      box-shadow: 0 0 10px var(--main-color);
-    }
-    .cursor-dot {
-      width: 6px;
-      height: 6px;
-      background: var(--main-color);
-      border-radius: 50%;
-      position: fixed;
-      pointer-events: none;
-      z-index: 9999;
-      transform: translate(-50%, -50%);
-    }
-
-    /* --- SCROLLBAR --- */
-    ::-webkit-scrollbar {
-      width: 10px;
-    }
-    ::-webkit-scrollbar-track {
-      background: var(--bg-color);
-    }
-    ::-webkit-scrollbar-thumb {
-      background: var(--main-color);
-      border-radius: 5px;
-    }
-
-    /* --- HEADER --- */
-    header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      padding: 20px 5%;
-      background: rgba(15, 23, 42, 0.8);
-      backdrop-filter: blur(10px);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      z-index: 100;
-      border-bottom: 1px solid var(--glass-border);
-    }
-
-    .logo {
-      font-size: 1.8rem;
-      color: var(--text-color);
-      font-weight: 700;
-      cursor: pointer;
-      transition: 0.3s;
-      text-shadow: 0 0 10px rgba(0, 242, 234, 0.5);
-    }
-    .logo:hover {
-      color: var(--main-color);
-      text-shadow: 0 0 20px var(--main-color);
-    }
-
-    .navigation a {
-      font-size: 1.1rem;
-      color: var(--text-color);
-      margin-left: 35px;
-      font-weight: 500;
-      transition: 0.3s;
-      position: relative;
-    }
-    .navigation a:hover, .navigation a.active {
-      color: var(--main-color);
-    }
-    .navigation a::after {
-      content: '';
-      position: absolute;
-      left: 0;
-      bottom: -5px;
-      width: 0;
-      height: 2px;
-      background: var(--main-color);
-      transition: 0.3s;
-      box-shadow: 0 0 10px var(--main-color);
-    }
-    .navigation a:hover::after {
-      width: 100%;
-    }
-
-    /* --- SECTIONS COMMON --- */
-    section {
-      min-height: 100vh;
-      padding: 100px 9% 20px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-
-    span {
-      color: var(--main-color);
-    }
-
-    /* Animation Scroll Reveal */
-    .reveal {
-      opacity: 0;
-      transform: translateY(50px);
-      transition: all 1s ease;
-    }
-    .reveal.active {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* --- HOME --- */
-    .home {
-      display: flex;
-      align-items: center;
-      gap: 50px;
-    }
-    
-    .home-content h3 {
-      font-size: 2rem;
-      font-weight: 700;
-    }
-    .home-content h1 {
-      font-size: 3.5rem;
-      font-weight: 700;
-      line-height: 1.2;
-      margin: 10px 0;
-      text-shadow: 0 0 10px rgba(0, 242, 234, 0.3);
-    }
-    .home-content p {
-      font-size: 1.1rem;
-      margin: 20px 0 30px;
-      max-width: 600px;
-      line-height: 1.6;
-      color: #ccc;
-    }
-    
-    /* Typing Effect Cursor */
-    .typing::after {
-      content: '|';
-      animation: blink 0.7s infinite;
-      color: var(--main-color);
-    }
-    @keyframes blink {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0; }
-    }
-
-    .social-media a {
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
-      width: 45px;
-      height: 45px;
-      background: transparent;
-      border: 2px solid var(--main-color);
-      border-radius: 50%;
-      font-size: 1.2rem;
-      color: var(--main-color);
-      margin: 0 10px 0 0;
-      transition: 0.4s;
-      box-shadow: 0 0 10px var(--main-color);
-    }
-    .social-media a:hover {
-      background: var(--main-color);
-      color: var(--bg-color);
-      box-shadow: 0 0 20px var(--main-color);
-      transform: translateY(-5px);
-    }
-
-    .home-img {
-      flex: 1;
-      display: flex;
-      justify-content: center;
-      position: relative;
-    }
-    .home-img img {
-      width: 350px;
-      border-radius: 50%;
-      box-shadow: 0 0 30px var(--main-color);
-      animation: floatImage 4s ease-in-out infinite;
-      border: 3px solid var(--glass-border);
-    }
-
-    @keyframes floatImage {
-      0% { transform: translateY(0); }
-      50% { transform: translateY(-20px); }
-      100% { transform: translateY(0); }
-    }
-
-    /* --- ABOUT --- */
-    .about {
-      background: var(--bg-light);
-    }
-    .about-container {
-      display: flex;
-      align-items: center;
-      gap: 4rem;
-      background: var(--glass-bg);
-      border: 1px solid var(--glass-border);
-      padding: 40px;
-      border-radius: 20px;
-      backdrop-filter: blur(5px);
-    }
-    .about-img img {
-      width: 250px;
-      border-radius: 20px;
-      border: 2px solid var(--main-color);
-      box-shadow: 0 0 20px rgba(0, 242, 234, 0.2);
-      transition: 0.3s;
-    }
-    .about-img img:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 30px var(--main-color);
-    }
-    .heading {
-      text-align: center;
-      font-size: 3rem;
-      margin-bottom: 3rem;
-    }
-    .about-text h2 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-    }
-    .about-list {
-      list-style: none;
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 15px;
-      margin-top: 20px;
-    }
-    .about-list li {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 1.1rem;
-    }
-    .about-list i {
-      color: var(--main-color);
-    }
-
-    /* --- SKILLS --- */
-    .skills-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-    }
-    .skill-box {
-      background: var(--glass-bg);
-      padding: 2rem;
-      border-radius: 15px;
-      border: 1px solid var(--glass-border);
-      transition: 0.3s;
-    }
-    .skill-box:hover {
-      transform: translateY(-5px);
-      border-color: var(--main-color);
-      box-shadow: 0 5px 15px rgba(0, 242, 234, 0.1);
-    }
-    .skill-title {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 1rem;
-      font-weight: 600;
-    }
-    .bar-bg {
-      width: 100%;
-      height: 10px;
-      background: #333;
-      border-radius: 5px;
-      overflow: hidden;
-    }
-    .bar-fill {
-      height: 100%;
-      background: linear-gradient(90deg, var(--main-color), #008cff);
-      border-radius: 5px;
-      width: 0; /* JS or animation will fill this */
-      box-shadow: 0 0 10px var(--main-color);
-      animation: fillBar 1.5s cubic-bezier(0.1, 0.7, 1.0, 0.1) forwards;
-    }
-    @keyframes fillBar {
-      from { width: 0; }
-    }
-
-    /* --- CONTACT --- */
-    .contact-container {
-      display: flex;
-      justify-content: center;
-      gap: 3rem;
-      flex-wrap: wrap;
-    }
-    .contact-card, .contact-form-box {
-      background: rgba(255,255,255,0.03);
-      backdrop-filter: blur(15px);
-      padding: 40px;
-      border-radius: 20px;
-      border: 1px solid var(--glass-border);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-      flex: 1;
-      min-width: 300px;
-      max-width: 500px;
-    }
-    .contact-item {
-      margin-bottom: 20px;
-      display: flex;
-      align-items: center;
-      gap: 15px;
-      font-size: 1.1rem;
-    }
-    .contact-item i {
-      color: var(--main-color);
-      font-size: 1.4rem;
-    }
-    
-    .input-box {
-      position: relative;
-      margin-bottom: 20px;
-    }
-    .input-box input, .input-box textarea {
-      width: 100%;
-      padding: 12px 15px;
-      background: transparent;
-      border: 2px solid var(--glass-border);
-      border-radius: 10px;
-      color: #fff;
-      font-size: 1rem;
-      transition: 0.3s;
-    }
-    .input-box input:focus, .input-box textarea:focus {
-      border-color: var(--main-color);
-      box-shadow: 0 0 10px rgba(0, 242, 234, 0.2);
-    }
-    .input-box textarea {
-      height: 150px;
-      resize: none;
-    }
-    .btn {
-      display: inline-block;
-      padding: 12px 28px;
-      background: var(--main-color);
-      border-radius: 40px;
-      box-shadow: 0 0 10px var(--main-color);
-      font-size: 1rem;
-      color: var(--bg-color);
-      font-weight: 600;
-      letter-spacing: 1px;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-    .btn:hover {
-      box-shadow: 0 0 25px var(--main-color);
-      transform: scale(1.05);
-    }
-
-    /* --- OCEAN WAVES --- */
-    .ocean {
-      height: 5%;
-      width: 100%;
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      overflow-x: hidden;
-      z-index: -1;
-    }
-    .wave {
-      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 198'%3E%3Cpath fill='%2300f2ea' fill-opacity='0.1' d='M1600 91.59V0H0v91.59C160.9 91.59 160.9 153.19 320 153.19S480 91.59 640 91.59 800 153.19 960 153.19 1120 91.59 1280 91.59 1440 153.19 1600 91.59z'/%3E%3C/svg%3E") repeat-x;
-      position: absolute;
-      top: -198px;
-      width: 6400px;
-      height: 198px;
-      animation: wave 7s cubic-bezier(0.36, 0.45, 0.63, 0.53) infinite;
-      transform: translate3d(0, 0, 0);
-      opacity: 0.4;
-    }
-    .wave:nth-of-type(2) {
-      top: -175px;
-      animation: wave 7s cubic-bezier(0.36, 0.45, 0.63, 0.53) -.125s infinite, swell 7s ease -1.25s infinite;
-      opacity: 0.6;
-    }
-    @keyframes wave {
-      0% { margin-left: 0; }
-      100% { margin-left: -1600px; }
-    }
-    @keyframes swell {
-      0%, 100% { transform: translate3d(0, -25px, 0); }
-      50% { transform: translate3d(0, 5px, 0); }
-    }
-
-    /* --- RESPONSIVE --- */
-    @media (max-width: 991px) {
-      header { padding: 2rem 4%; }
-      section { padding: 10rem 4% 2rem; }
-      .home { flex-direction: column; gap: 3rem; }
-      .home-img img { width: 280px; }
-      .about-container { flex-direction: column; text-align: center; }
-    }
-    @media (max-width: 768px) {
-      .navigation { display: none; } /* Need JS toggle for mobile menu really, kept simple for now */
-      .home-content h1 { font-size: 2.5rem; }
-      .contact-container { flex-direction: column; }
-      .cursor, .cursor-dot { display: none; } /* Hide custom cursor on touch */
-    }
-  </style>
+    .contact-modern-form {
+      background: #f8f8f8;
+      border-radius: 22px;
+      box-shadow: 0 6px 32px rgba(0,191,174,0.08), 0 1.5px 8px rgba(0,0,0,0.02);
+      padding: 36px 32px 28px 32px;
+      min-width: 270px;
+      max-width: 400px;
+      flex: 1 1 340px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .contact-modern-form h2 {
+      font-size: 1.3rem;
+      color: #00bfae;
+      margin-bottom: 12px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .contact-modern-form .input-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 1.5px 8px rgba(0,191,174,0.04);
+      padding: 6px 12px;
+      margin-bottom: 6px;
+    }
+    .contact-modern-form label {
+      color: #00bfae;
+      font-size: 1.2rem;
+    }
+    .contact-modern-form input,
+    .contact-modern-form textarea {
+      border: none;
+      outline: none;
+      background: transparent;
+      font-size: 1rem;
+      padding: 10px 6px;
+      flex: 1;
+      color: #222;
+      resize: none;
+    }
+    .contact-modern-form textarea {
+      min-height: 70px;
+      max-height: 180px;
+    }
+    .contact-modern-btn {
+      background: linear-gradient(90deg, #00bfae 60%, #00e6d3 100%);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 13px 0;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 8px;
+      box-shadow: 0 2px 8px rgba(0,191,174,0.10);
+      transition: background 0.2s, transform 0.15s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      letter-spacing: 1px;
+    }
+    .contact-modern-btn:hover {
+      background: linear-gradient(90deg, #00e6d3 60%, #00bfae 100%);
+      transform: translateY(-2px) scale(1.03);
+    }
+    @media (max-width: 900px) {
+      .contact-modern-flex {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 28px;
+        max-width: 98vw;
+      }
+      .contact-modern-card, .contact-modern-form {
+        max-width: 98vw;
+        min-width: unset;
+        padding: 24px 8vw 18px 8vw;
+      }
+    }
+    .contact-glass-flex {
+      display: flex;
+      gap: 48px;
+      justify-content: center;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      margin: 0 auto 48px auto;
+      max-width: 950px;
+    }
+    .contact-glass-card, .contact-glass-form {
+      background: rgba(255,255,255,0.18);
+      border-radius: 24px;
+      box-shadow: 0 8px 32px 0 rgba(31,38,135,0.18);
+      backdrop-filter: blur(16px) saturate(180%);
+      -webkit-backdrop-filter: blur(16px) saturate(180%);
+      border: 1.5px solid rgba(0,191,174,0.18);
+      padding: 48px 44px 40px 44px;
+      min-width: 320px;
+      max-width: 480px;
+      flex: 1 1 400px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .contact-glass-card:hover, .contact-glass-form:hover {
+      box-shadow: 0 12px 40px 0 rgba(0,191,174,0.18), 0 2px 12px rgba(0,0,0,0.04);
+      transform: translateY(-4px) scale(1.02);
+    }
+    .contact-glass-card h2, .contact-glass-form h2 {
+      font-size: 1.35rem;
+      color: #00bfae;
+      margin-bottom: 14px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .contact-glass-list div {
+      font-size: 1.08rem;
+      color: #222;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .contact-glass-socials {
+      display: flex;
+      gap: 20px;
+      margin-top: 12px;
+    }
+    .contact-glass-socials a {
+      font-size: 1.6rem;
+      color: #00bfae;
+      background: rgba(255,255,255,0.45);
+      border-radius: 50%;
+      padding: 12px;
+      transition: background 0.2s, color 0.2s, transform 0.2s;
+      box-shadow: 0 2px 8px rgba(0,191,174,0.09);
+      border: 1.5px solid rgba(0,191,174,0.13);
+    }
+    .contact-glass-socials a:hover {
+      background: #00bfae;
+      color: #fff;
+      transform: scale(1.15);
+    }
+    .contact-glass-form .input-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(255,255,255,0.55);
+      border-radius: 12px;
+      box-shadow: 0 1.5px 8px rgba(0,191,174,0.04);
+      padding: 8px 14px;
+      margin-bottom: 8px;
+    }
+    .contact-glass-form label {
+      color: #00bfae;
+      font-size: 1.2rem;
+    }
+    .contact-glass-form input,
+    .contact-glass-form textarea {
+      border: none;
+      outline: none;
+      background: transparent;
+      font-size: 1rem;
+      padding: 10px 6px;
+      flex: 1;
+      color: #222;
+      resize: none;
+    }
+    .contact-glass-form textarea {
+      min-height: 70px;
+      max-height: 180px;
+    }
+    .contact-glass-btn {
+      background: linear-gradient(90deg, #00bfae 60%, #00e6d3 100%);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      padding: 14px 0;
+      font-size: 1.13rem;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 10px;
+      box-shadow: 0 2px 8px rgba(0,191,174,0.13);
+      transition: background 0.2s, transform 0.15s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      letter-spacing: 1px;
+    }
+    .contact-glass-btn:hover {
+      background: linear-gradient(90deg, #00e6d3 60%, #00bfae 100%);
+      transform: translateY(-2px) scale(1.04);
+    }
+    @media (max-width: 900px) {
+      .contact-glass-flex {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 28px;
+        max-width: 98vw;
+      }
+      .contact-glass-card, .contact-glass-form {
+        max-width: 98vw;
+        min-width: unset;
+        padding: 28px 4vw 20px 4vw;
+      }
+    }
+  </style>
 </head>
-
 <body>
+  <header>
+    <h2 class="logo">Resume</h2>
+    <nav class="navigation">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#portfolio">Portfolio</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button id="themeToggle">🌙</button>
+  </header>
+  <section class="home" id="home">
+    <div class="content" style="display: flex; align-items: center; gap: 40px;">
+      <div style="flex:1;">
+        <h3>Hello, It's Me</h3>
+        <h1><span>Peraphat Sawatsalung</span></h1>
+        <h3>And I am a <span class="typing"></span></h3>
+        <p>I am a computer science student</p>
 
-  <div class="cursor"></div>
-  <div class="cursor-dot"></div>
+        <div class="socials">
+          <a href="https://www.instagram.com/_khawplauxk/" target="_blank"><i class="fab fa-instagram"></i></a>
+          <a href="https://wa.me/66812415036" target="_blank"><i class="fab fa-whatsapp"></i></a>
+          <a href="https://tiktok.com/404" target="_blank"><i class="fab fa-tiktok"></i></a>
+          <a href="https://discord.com/users/472036867286499329" target="_blank"><i class="fab fa-discord"></i></a>
+        </div>
+      </div>
+      <div class="profile-img" style="margin-left:auto;">
+        <img src="09061662-8a52-4ad4-8480-29d72f977adc.png" alt="Avatar" />
+      </div>
+    </div>
+  </section>
 
-  <header>
-    <a href="#" class="logo">Peraphat.</a>
-    <nav class="navigation">
-      <a href="#home" class="active">Home</a>
-      <a href="#about">About</a>
-      <a href="#skills">Skills</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </header>
+  <section id="about">
+    <h1>About</h1>
+    <div class="about-container">
+      <div class="about-img">
+        <img src="494885631_706524978721902_7524303429753259503_n.jpg" alt="Profile" />
+      </div>
+      <div class="about-text">
+        <h2>Peraphat Sawatsalung</h2>
+        <p>
+          สวัสดีครับ ผมชื่อ <b>Peraphat Sawatsalung</b> ปัจจุบันผมศึกษาอยู่ระดับปริญญาตรีสาขานิติศาสตร์ แต่มีความสนใจในด้านการพัฒนาเว็บไซต์ การเขียนโปรแกรม และเทคโนโลยีใหม่ ๆ ผมพึ่งเริ่มเขียนเว็บไซต์ผมเลยยังเขียนอะไรได้ไม่มาก<br><br>
+          แต่ผมพร้อมพัฒนาทักษะของตัวเองอยู่เสมอ พร้อมเปิดรับประสบการณ์ใหม่ ๆ และทำงานร่วมกับผู้อื่นอย่างเต็มที่<br><br>
+          <span class="about-highlight">"Learning never exhausts the mind."</span>
+        </p>
+        <ul class="about-list">
+          <li><i class="fas fa-code"></i> Web Development</li>
+          <li><i class="fas fa-laptop"></i> Programming</li>
+          <li><i class="fas fa-users"></i> Teamwork</li>
+          <li><i class="fas fa-lightbulb"></i> Creative Thinking</li>
+        </ul>
+      </div>
+    </div>
+  </section>
 
-  <section class="home" id="home">
-    <div class="home-content reveal">
-      <h3>Hello, It's Me</h3>
-      <h1>Peraphat Sawatsalung</h1>
-      <h3>I am a <span class="typing"></span></h3>
-      <p>Computer science student passionate about Web Development and Creative Technologies. Let's build something amazing together.</p>
+  <section id="skills">
+    <h1>Skills</h1>
+    <div class="skills-bar-container">
+      <div class="skill-bar">
+        <span class="skill-title"><i class="fas fa-code"></i> HTML / CSS / JavaScript</span>
+        <div class="bar-bg">
+          <div class="bar-fill" style="width: 50%"></div>
+        </div>
+      </div>
+      <div class="skill-bar">
+        <span class="skill-title"><i class="fas fa-database"></i> SQL & Database</span>
+        <div class="bar-bg">
+          <div class="bar-fill" style="width: 35%"></div>
+        </div>
+      </div>
+      <div class="skill-bar">
+        <span class="skill-title"><i class="fab fa-python"></i> Python</span>
+        <div class="bar-bg">
+          <div class="bar-fill" style="width: 50%"></div>
+        </div>
+      </div>
+      <div class="skill-bar">
+        <span class="skill-title"><i class="fas fa-paint-brush"></i> UI Design</span>
+        <div class="bar-bg">
+          <div class="bar-fill" style="width: 20%"></div>
+        </div>
+      </div>
+      <div class="skill-bar">
+        <span class="skill-title"><i class="fas fa-users"></i> Teamwork</span>
+        <div class="bar-bg">
+          <div class="bar-fill" style="width: 50%"></div>
+        </div>
+      </div>
+      <div class="skill-bar">
+        <span class="skill-title"><i class="fas fa-lightbulb"></i> Problem Solving</span>
+        <div class="bar-bg">
+          <div class="bar-fill" style="width: 40%"></div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-      <div class="social-media">
-        <a href="https://www.instagram.com/_khawplauxk/" target="_blank"><i class="fab fa-instagram"></i></a>
-        <a href="https://wa.me/66812415036" target="_blank"><i class="fab fa-whatsapp"></i></a>
-        <a href="https://tiktok.com/404" target="_blank"><i class="fab fa-tiktok"></i></a>
-        <a href="https://discord.com/users/472036867286499329" target="_blank"><i class="fab fa-discord"></i></a>
-      </div>
-    </div>
+  <section id="portfolio">
+    <h1>Portfolio</h1>
+    <div class="portfolio-container" style="text-align:center; padding: 48px 0;">
+      <p style="font-size:1.2rem; color:#888;">
+        ยังไม่มีเนื้อหาในส่วน Portfolio ขณะนี้
+      </p>
+    </div>
+  </section>
 
-    <div class="home-img reveal">
-      <img src="09061662-8a52-4ad4-8480-29d72f977adc.png" alt="Profile Picture" onerror="this.src='https://via.placeholder.com/350'"/>
-    </div>
-  </section>
+  <section id="contact">
+    <h1 style="text-align:center; margin-bottom:32px; letter-spacing:1px;">Contact</h1>
+    <div class="contact-glass-flex">
+      <div class="contact-glass-card">
+        <h2><i class="fas fa-user-circle"></i> Contact Info</h2>
+        <div class="contact-glass-list">
+          <div><i class="fas fa-envelope"></i> mnkljf893456@gmail.com(for work)</div>
+          <div class="contact-glass-socials">
+            <a href="https://www.instagram.com/_khawplauxk/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://wa.me/66812415036" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://tiktok.com/404" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
+            <a href="https://discord.com/users/472036867286499329" target="_blank" title="Discord"><i class="fab fa-discord"></i></a>
+          </div>
+        </div>
+      </div>
+      <form action="https://formspree.io/f/mldbvooz" method="POST" class="contact-glass-form">
+        <h2><i class="fas fa-paper-plane"></i> Send Message</h2>
+        <div class="input-group">
+          <label for="name"><i class="fas fa-user"></i></label>
+          <input type="text" id="name" name="name" placeholder="Your Name" required>
+        </div>
+        <div class="input-group">
+          <label for="email"><i class="fas fa-envelope"></i></label>
+          <input type="email" id="email" name="email" placeholder="Your Email" required>
+        </div>
+        <div class="input-group">
+          <label for="message"><i class="fas fa-comment-dots"></i></label>
+          <textarea id="message" name="message" placeholder="Your Message" required></textarea>
+        </div>
+        <button type="submit" class="contact-glass-btn"><i class="fas fa-paper-plane"></i> Send</button>
+      </form>
+    </div>
+  </section>
 
-  <section class="about" id="about">
-    <h2 class="heading reveal">About <span>Me</span></h2>
-    <div class="about-container reveal">
-      <div class="about-img">
-        <img src="494885631_706524978721902_7524303429753259503_n.jpg" alt="About Image" onerror="this.src='https://via.placeholder.com/250'"/>
-      </div>
-      <div class="about-text">
-        <h2>Peraphat Sawatsalung</h2>
-        <p>
-          สวัสดีครับ! ผมชื่อ <b>Peraphat</b> ปัจจุบันศึกษาอยู่ระดับปริญญาตรีสาขานิติศาสตร์ แต่มีใจรักในโลกของ <span>Programming</span> และ <span>Web Development</span> 
-          <br><br>
-          ผมเชื่อว่าเทคโนโลยีไม่มีขีดจำกัด แม้จะเริ่มจากศูนย์ แต่ด้วยความตั้งใจ "Learning never exhausts the mind" ผมพร้อมเรียนรู้สิ่งใหม่และสร้างสรรค์ผลงานที่ยอดเยี่ยมครับ
-        </p>
-        <ul class="about-list">
-          <li><i class="fas fa-code"></i> Web Development</li>
-          <li><i class="fab fa-python"></i> Python Programmer</li>
-          <li><i class="fas fa-rocket"></i> Creative Thinker</li>
-          <li><i class="fas fa-users"></i> Team Player</li>
-        </ul>
-      </div>
-    </div>
-  </section>
+   <div class="ocean">
+  <div class="wave"></div>
+  <div class="wave"></div>
+</div>
 
-  <section class="skills" id="skills">
-    <h2 class="heading reveal">My <span>Skills</span></h2>
-    <div class="skills-container reveal">
-      
-      <div class="skill-box">
-        <div class="skill-title">
-          <span><i class="fab fa-html5"></i> HTML / CSS / JS</span>
-          <span>50%</span>
-        </div>
-        <div class="bar-bg"><div class="bar-fill" style="width: 50%"></div></div>
-      </div>
+  <button id="scrollTopBtn" title="Go to top">&#8679;</button>
 
-      <div class="skill-box">
-        <div class="skill-title">
-          <span><i class="fas fa-database"></i> SQL & Database</span>
-          <span>35%</span>
-        </div>
-        <div class="bar-bg"><div class="bar-fill" style="width: 35%"></div></div>
-      </div>
+  <footer style="text-align:center; color:#888; margin: 32px 0 12px 0; font-size:1rem;">
+    &copy; 2025 Peraphat Sawatsalung. All rights reserved.
+  </footer>
 
-      <div class="skill-box">
-        <div class="skill-title">
-          <span><i class="fab fa-python"></i> Python</span>
-          <span>50%</span>
-        </div>
-        <div class="bar-bg"><div class="bar-fill" style="width: 50%"></div></div>
-      </div>
-
-      <div class="skill-box">
-        <div class="skill-title">
-          <span><i class="fas fa-paint-brush"></i> UI/UX Design</span>
-          <span>20%</span>
-        </div>
-        <div class="bar-bg"><div class="bar-fill" style="width: 20%"></div></div>
-      </div>
-
-    </div>
-  </section>
-
-  <section class="contact" id="contact">
-    <h2 class="heading reveal">Contact <span>Me</span></h2>
-    <div class="contact-container reveal">
-      
-      <div class="contact-card">
-        <h3><i class="fas fa-address-card"></i> Get in Touch</h3>
-        <br>
-        <div class="contact-item">
-          <i class="fas fa-envelope"></i>
-          <span>mnkljf893456@gmail.com</span>
-        </div>
-        <div class="contact-item">
-          <i class="fas fa-phone"></i>
-          <span>+66 81 241 5036</span>
-        </div>
-        <div class="contact-item">
-          <i class="fas fa-map-marker-alt"></i>
-          <span>Thailand</span>
-        </div>
-        <div class="social-media" style="margin-top: 20px;">
-            <a href="#"><i class="fab fa-facebook-f"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-        </div>
-      </div>
-
-      <form action="https://formspree.io/f/mldbvooz" method="POST" class="contact-form-box">
-        <div class="input-box">
-          <input type="text" name="name" placeholder="Full Name" required>
-        </div>
-        <div class="input-box">
-          <input type="email" name="email" placeholder="Email Address" required>
-        </div>
-        <div class="input-box">
-          <textarea name="message" placeholder="Your Message" required></textarea>
-        </div>
-        <button type="submit" class="btn">Send Message <i class="fas fa-paper-plane"></i></button>
-      </form>
-
-    </div>
-  </section>
-
-  <footer style="position: relative; margin-top: 50px; padding: 20px; text-align: center; background: var(--bg-light);">
-    <div class="ocean">
-      <div class="wave"></div>
-      <div class="wave"></div>
-    </div>
-    <p>Copyright &copy; 2025 by Peraphat | All Rights Reserved.</p>
-  </footer>
-
-  <script>
-    // --- Custom Cursor Script ---
-    const cursor = document.querySelector('.cursor');
-    const cursorDot = document.querySelector('.cursor-dot');
-
-    window.addEventListener('mousemove', (e) => {
-      const posX = e.clientX;
-      const posY = e.clientY;
-
-      // Dot follows instantly
-      cursorDot.style.left = `${posX}px`;
-      cursorDot.style.top = `${posY}px`;
-
-      // Circle follows with slight delay (smooth)
-      cursor.animate({
-        left: `${posX}px`,
-        top: `${posY}px`
-      }, { duration: 500, fill: "forwards" });
-    });
-
-    // --- Typing Effect ---
-    const textElement = document.querySelector('.typing');
-    const texts = ["Computer Science Student", "Web Developer", "Python Learner"];
-    let count = 0;
-    let index = 0;
-    let currentText = "";
-    let letter = "";
-
-    (function type() {
-      if (count === texts.length) {
-        count = 0;
-      }
-      currentText = texts[count];
-      letter = currentText.slice(0, ++index);
-      
-      textElement.textContent = letter;
-      if (letter.length === currentText.length) {
-        count++;
-        index = 0;
-        setTimeout(type, 2000); // Pause at end of word
-      } else {
-        setTimeout(type, 100); // Typing speed
-      }
-    })();
-
-    // --- Scroll Reveal Animation ---
-    window.addEventListener('scroll', reveal);
-
-    function reveal() {
-      var reveals = document.querySelectorAll('.reveal');
-
-      for (var i = 0; i < reveals.length; i++) {
-        var windowHeight = window.innerHeight;
-        var revealTop = reveals[i].getBoundingClientRect().top;
-        var revealPoint = 150;
-
-        if (revealTop < windowHeight - revealPoint) {
-          reveals[i].classList.add('active');
-        } else {
-          reveals[i].classList.remove('active');
-        }
-      }
-    }
-  </script>
-
+  <script src="script.js"></script>
 </body>
 </html>
+```   อยากให้เฟี้ยวกว่านนี้
